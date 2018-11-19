@@ -53,6 +53,25 @@ var renderTitle = function (ctx, message) {
   }
 };
 
+var renderColumns = function (ctx, player, columnX, columnY, columnHeight) {
+  if (player === 'Вы') {
+    ctx.fillStyle = PLAYER_COLOR;
+  } else {
+    var opacity = (Math.floor(Math.random() * (MAX_OPACITY - MIN_OPACITY)) + MIN_OPACITY) / 100;
+    var color = 'rgba(0, 0, 255, ' + opacity + ')';
+    ctx.fillStyle = color;
+  }
+
+  ctx.fillRect(columnX, columnY, BAR_WIDTH, columnHeight);
+};
+
+var renderNames = function (ctx, player, columnX, columnY, columnHeight) {
+  var textX = columnX;
+  var textY = columnY + columnHeight + (TEXT_PADDING * 2);
+  ctx.fillStyle = TEXT_COLOR;
+  ctx.fillText(player, textX, textY);
+};
+
 var renderFigure = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
 
@@ -64,21 +83,8 @@ var renderFigure = function (ctx, players, times) {
     var columnX = CLOUD_X + COLUMN_PADDING + (GAP + BAR_WIDTH) * y;
     var columnY = CLOUD_Y + CLOUD_HEIGHT - COLUMN_PADDING - columnHeight;
 
-    if (player === 'Вы') {
-      ctx.fillStyle = PLAYER_COLOR;
-    } else {
-      var opacity = (Math.floor(Math.random() * (MAX_OPACITY - MIN_OPACITY)) + MIN_OPACITY) / 100;
-      var color = 'rgba(0, 0, 255, ' + opacity + ')';
-      ctx.fillStyle = color;
-    }
-
-    ctx.fillRect(columnX, columnY, BAR_WIDTH, columnHeight);
-
-    var textX = columnX;
-    var textY = columnY + columnHeight + (TEXT_PADDING * 2);
-
-    ctx.fillStyle = TEXT_COLOR;
-    ctx.fillText(player, textX, textY);
+    renderColumns(ctx, player, columnX, columnY, columnHeight);
+    renderNames(ctx, player, columnX, columnY, columnHeight);
   }
 };
 
