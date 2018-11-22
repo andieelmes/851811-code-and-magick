@@ -35,7 +35,9 @@ function makeWizard() {
   return wizard;
 }
 
-var generateWizards = function (array) {
+var generateWizards = function () {
+  var array = [];
+
   for (var i = 0; i < NUMBER_OF_WIZARDS; i++) {
     var newWizard = makeWizard();
     array.push(newWizard);
@@ -69,8 +71,7 @@ var showSetup = function () {
 };
 
 var init = function () {
-  var wizards = [];
-  wizards = generateWizards(wizards);
+  var wizards = generateWizards();
   populateDom(wizards);
   showSetup();
 };
