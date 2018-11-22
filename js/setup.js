@@ -1,7 +1,6 @@
 'use strict';
 
 var NUMBER_OF_WIZARDS = 4;
-var wizards = [];
 
 var FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -55,10 +54,10 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-var populateDom = function () {
+var populateDom = function (array) {
   var fragment = document.createDocumentFragment();
-  for (var y = 0; y < wizards.length; y++) {
-    fragment.appendChild(renderWizard(wizards[y]));
+  for (var y = 0; y < array.length; y++) {
+    fragment.appendChild(renderWizard(array[y]));
   }
   similarListElement.appendChild(fragment);
 };
@@ -70,6 +69,7 @@ var showSetup = function () {
 };
 
 var init = function () {
+  var wizards = [];
   wizards = generateWizards(wizards);
   populateDom(wizards);
   showSetup();
