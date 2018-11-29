@@ -132,19 +132,19 @@ setupUserNameElement.addEventListener('blur', function () {
   document.addEventListener('keydown', onPopupEscPress);
 });
 
-function addChangeColorEvent(element, input, array, colorStyle) {
+var addChangeColorEvent = function (element, input, array, colorStyle) {
   element.addEventListener('click', function () {
     var color = getRandomElement(array);
     input.value = color;
     element.style[colorStyle] = color;
   });
-}
+};
 
-function subscribeColorChanges() {
+var subscribeColorChanges = function () {
   addChangeColorEvent(setupWizardCoatElement, setupWizardCoatInput, COAT_COLORS, 'fill');
   addChangeColorEvent(setupWizardEyesElement, setupWizardEyesInput, EYE_COLORS, 'fill');
   addChangeColorEvent(setupWizardFireballElement, setupWizardFireballInput, FIREBALL_COLORS, 'background-color');
-}
+};
 
 var init = function () {
   var wizards = generateWizards();
