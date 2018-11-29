@@ -88,14 +88,6 @@ var showSetup = function () {
   setupSimilarElement.classList.remove('hidden');
 };
 
-var init = function () {
-  var wizards = generateWizards();
-  populateDom(wizards);
-  showSetup();
-};
-
-init();
-
 var onPopupEscPress = function (e) {
   if (e.keyCode === ESC_KEYCODE) {
     closePopup();
@@ -140,7 +132,7 @@ setupUserNameElement.addEventListener('blur', function () {
   document.addEventListener('keydown', onPopupEscPress);
 });
 
-function changeColors(element, input, array, colorStyle) {
+function addChangeColorEvent(element, input, array, colorStyle) {
   element.addEventListener('click', function () {
     var color = getRandomElement(array);
     input.value = color;
@@ -148,6 +140,17 @@ function changeColors(element, input, array, colorStyle) {
   });
 }
 
-changeColors(setupWizardCoatElement, setupWizardCoatInput, COAT_COLORS, 'fill');
-changeColors(setupWizardEyesElement, setupWizardEyesInput, EYE_COLORS, 'fill');
-changeColors(setupWizardFireballElement, setupWizardFireballInput, FIREBALL_COLORS, 'background-color');
+function subscribeColorChanges() {
+  addChangeColorEvent(setupWizardCoatElement, setupWizardCoatInput, COAT_COLORS, 'fill');
+  addChangeColorEvent(setupWizardEyesElement, setupWizardEyesInput, EYE_COLORS, 'fill');
+  addChangeColorEvent(setupWizardFireballElement, setupWizardFireballInput, FIREBALL_COLORS, 'background-color');
+}
+
+var init = function () {
+  var wizards = generateWizards();
+  populateDom(wizards);
+  showSetup();
+  subscribeColorChanges();
+};
+
+init();
