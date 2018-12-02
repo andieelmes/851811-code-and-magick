@@ -96,6 +96,10 @@ var onPopupEscPress = function (e) {
 
 var openPopup = function () {
   setupElement.classList.remove('hidden');
+
+  setupElement.style.top = '';
+  setupElement.style.left = '';
+
   document.addEventListener('keydown', onPopupEscPress);
 };
 
