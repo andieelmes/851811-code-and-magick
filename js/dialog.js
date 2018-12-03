@@ -1,9 +1,9 @@
 'use strict';
 
 var setupDialogElement = document.querySelector('.setup');
-var dialogHandler = setupDialogElement.querySelector('.setup-user-pic');
+var dialogElement = setupDialogElement.querySelector('.upload');
 
-dialogHandler.addEventListener('mousedown', function (evt) {
+dialogElement.addEventListener('mousedown', function (evt) {
   evt.preventDefault();
 
   var startCoords = {
@@ -41,9 +41,9 @@ dialogHandler.addEventListener('mousedown', function (evt) {
     if (dragged) {
       var onClickPreventDefault = function (e) {
         e.preventDefault();
-        dialogHandler.removeEventListener('click', onClickPreventDefault);
+        dialogElement.removeEventListener('click', onClickPreventDefault);
       };
-      dialogHandler.addEventListener('click', onClickPreventDefault);
+      dialogElement.addEventListener('click', onClickPreventDefault);
     }
 
   };
