@@ -5,14 +5,10 @@
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
 
-  var setupSimilarElement = window.SETUP_ELEMENT.querySelector('.setup-similar');
+  var setupSimilarElement = window.vars.setupElement.querySelector('.setup-similar');
   var setupOpenElement = document.querySelector('.setup-open');
-  var setupCloseElement = window.SETUP_ELEMENT.querySelector('.setup-close');
-  var setupUserNameElement = window.SETUP_ELEMENT.querySelector('.setup-user-name');
-
-  window.showSetup = function () {
-    setupSimilarElement.classList.remove('hidden');
-  };
+  var setupCloseElement = window.vars.setupElement.querySelector('.setup-close');
+  var setupUserNameElement = window.vars.setupElement.querySelector('.setup-user-name');
 
   var onPopupEscPress = function (e) {
     if (e.keyCode === ESC_KEYCODE) {
@@ -21,16 +17,16 @@
   };
 
   var openPopup = function () {
-    window.SETUP_ELEMENT.classList.remove('hidden');
+    window.vars.setupElement.classList.remove('hidden');
 
-    window.SETUP_ELEMENT.style.top = '';
-    window.SETUP_ELEMENT.style.left = '';
+    window.vars.setupElement.style.top = '';
+    window.vars.setupElement.style.left = '';
 
     document.addEventListener('keydown', onPopupEscPress);
   };
 
   var closePopup = function () {
-    window.SETUP_ELEMENT.classList.add('hidden');
+    window.vars.setupElement.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
@@ -61,5 +57,9 @@
   setupUserNameElement.addEventListener('blur', function () {
     document.addEventListener('keydown', onPopupEscPress);
   });
+
+  window.showSetup = function () {
+    setupSimilarElement.classList.remove('hidden');
+  };
 
 })();

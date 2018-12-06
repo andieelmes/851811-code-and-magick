@@ -3,28 +3,28 @@
 (function () {
   var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
-  var setupWizardElement = window.SETUP_ELEMENT.querySelector('.setup-wizard');
+  var setupWizardElement = window.vars.setupElement.querySelector('.setup-wizard');
 
   var setupWizardCoatElement = setupWizardElement.querySelector('.wizard-coat');
-  var setupWizardCoatInput = window.SETUP_ELEMENT.querySelector('[name="coat-color"]');
+  var setupWizardCoatInput = window.vars.setupElement.querySelector('[name="coat-color"]');
 
   var setupWizardEyesElement = setupWizardElement.querySelector('.wizard-eyes');
-  var setupWizardEyesInput = window.SETUP_ELEMENT.querySelector('[name="eyes-color"]');
+  var setupWizardEyesInput = window.vars.setupElement.querySelector('[name="eyes-color"]');
 
-  var setupWizardFireballElement = window.SETUP_ELEMENT.querySelector('.setup-fireball');
-  var setupWizardFireballInput = window.SETUP_ELEMENT.querySelector('[name="fireball-color"]');
+  var setupWizardFireballElement = window.vars.setupElement.querySelector('.setup-fireball');
+  var setupWizardFireballInput = window.vars.setupElement.querySelector('[name="fireball-color"]');
 
   var addChangeColorEvent = function (element, input, array, colorStyle) {
     element.addEventListener('click', function () {
-      var color = window.getRandomElement(array);
+      var color = window.utils.getRandomElement(array);
       input.value = color;
       element.style[colorStyle] = color;
     });
   };
 
   window.subscribeColorChanges = function () {
-    addChangeColorEvent(setupWizardCoatElement, setupWizardCoatInput, window.COAT_COLORS, 'fill');
-    addChangeColorEvent(setupWizardEyesElement, setupWizardEyesInput, window.EYE_COLORS, 'fill');
+    addChangeColorEvent(setupWizardCoatElement, setupWizardCoatInput, window.vars.COAT_COLORS, 'fill');
+    addChangeColorEvent(setupWizardEyesElement, setupWizardEyesInput, window.vars.EYE_COLORS, 'fill');
     addChangeColorEvent(setupWizardFireballElement, setupWizardFireballInput, FIREBALL_COLORS, 'background-color');
   };
 

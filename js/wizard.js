@@ -8,14 +8,14 @@
 
   function makeWizard() {
     var wizard = {};
-    var firstName = window.getRandomElement(FIRST_NAMES);
-    var lastName = window.getRandomElement(LAST_NAMES);
-    var fullName = window.getRandomInt(2) === 0 ? firstName + ' ' + lastName : lastName + ' ' + firstName;
+    var firstName = window.utils.getRandomElement(FIRST_NAMES);
+    var lastName = window.utils.getRandomElement(LAST_NAMES);
+    var fullName = window.utils.getRandomInt(2) === 0 ? firstName + ' ' + lastName : lastName + ' ' + firstName;
 
     wizard = {
       name: fullName,
-      coatColor: window.getRandomElement(window.COAT_COLORS),
-      eyesColor: window.getRandomElement(window.EYE_COLORS)
+      coatColor: window.utils.getRandomElement(window.vars.COAT_COLORS),
+      eyesColor: window.utils.getRandomElement(window.vars.EYE_COLORS)
     };
 
     return wizard;

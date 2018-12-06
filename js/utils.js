@@ -1,12 +1,17 @@
 'use strict';
 
 (function () {
-  window.getRandomInt = function (max) {
+  var getRandomInt = function (max) {
     return Math.floor(Math.random() * Math.floor(max));
   };
 
-  window.getRandomElement = function (array) {
-    return array[window.getRandomInt(array.length)];
+  var getRandomElement = function (array) {
+    return array[window.utils.getRandomInt(array.length)];
+  };
+
+  window.utils = {
+    getRandomInt: getRandomInt,
+    getRandomElement: getRandomElement
   };
 
 })();
