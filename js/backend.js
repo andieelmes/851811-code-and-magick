@@ -1,9 +1,15 @@
 'use strict';
 
 (function () {
+  var STATUS_OK = 200;
+  var URL = {
+    LOAD: 'https://js.dump.academy/code-and-magick/data',
+    SAVE: 'https://js.dump.academy/code-and-magick',
+  };
+
   var addXhrEvents = function (xhr, onLoad, onError) {
     xhr.addEventListener('load', function () {
-      if (xhr.status === 200) {
+      if (xhr.status === STATUS_OK) {
         onLoad(xhr.response);
       } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
@@ -19,20 +25,20 @@
     xhr.timeout = 10000; // 10s
   };
 
-  var makeXhr = function (type, URL, onLoad, onError) {
+  var makeXhr = function (type, url, onLoad, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     addXhrEvents(xhr, onLoad, onError);
-    xhr.open(type, URL);
+    xhr.open(type, url);
 
     return xhr;
   };
 
-  var makeJsonp = function (URL, onLoad, onError) {
-    var CALLBACK_NAME = 'window.onLoad';
+  var makeJsonp = function (url, onLoad, onError) {
+    var CALLBACK_NAME = 'window.populateDom';
     var loader = document.createElement('script');
-    loader.src = URL + '?callback=' + CALLBACK_NAME;
+    loader.src = url + '?callback=' + CALLBACK_NAME;
 
     loader.addEventListener('error', function () {
       onError('Произошла ошибка при загрузке данных');
@@ -41,17 +47,13 @@
   };
 
   var load = function (onLoad, onError) {
-    var URL = 'https://js.dump.academy/code-and-magick/data';
-
-    // var xhr = makeXhr('GET', URL, onLoad, onError);
+    // var xhr = makeXhr('GET', URL.LOAD, onLoad, onError);
     // xhr.send();
-    makeJsonp(URL, onLoad, onError);
+    makeJsonp(URL.LOAD, onLoad, onError);
   };
 
   var save = function (data, onLoad, onError) {
-    var URL = 'https://js.dump.academy/code-and-magick';
-
-    var xhr = makeXhr('POST', URL, onLoad, onError);
+    var xhr = makeXhr('POST', URL.SAVE, onLoad, onError);
     xhr.send(data);
   };
 

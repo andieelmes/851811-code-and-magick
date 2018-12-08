@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var NUMBER_OF_WIZARDS = 4;
+
   var similarListElement = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
@@ -16,7 +18,7 @@
 
   window.populateDom = function (array) {
     var fragment = document.createDocumentFragment();
-    for (var y = 0; y < 4; y++) {
+    for (var y = 0; y < NUMBER_OF_WIZARDS; y++) {
       fragment.appendChild(renderWizard(array[y]));
     }
     similarListElement.appendChild(fragment);
