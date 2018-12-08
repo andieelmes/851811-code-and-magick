@@ -29,9 +29,8 @@
     return xhr;
   };
 
-  var makeJsonp = function (URL, onload, onError) {
-    var onLoad = onload;
-    var CALLBACK_NAME = onLoad.name;
+  var makeJsonp = function (URL, onLoad, onError) {
+    var CALLBACK_NAME = 'window.onLoad';
     var loader = document.createElement('script');
     loader.src = URL + '?callback=' + CALLBACK_NAME;
 
@@ -46,7 +45,6 @@
 
     // var xhr = makeXhr('GET', URL, onLoad, onError);
     // xhr.send();
-
     makeJsonp(URL, onLoad, onError);
   };
 
