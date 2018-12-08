@@ -58,8 +58,17 @@
     document.addEventListener('keydown', onPopupEscPress);
   });
 
-  window.showSetup = function () {
+  var showSetup = function () {
     setupSimilarElement.classList.remove('hidden');
+  };
+
+  var hideSetup = function () {
+    setupSimilarElement.classList.add('hidden');
+  };
+
+  window.setup = {
+    showSetup: showSetup,
+    hideSetup: hideSetup,
   };
 
 })();
