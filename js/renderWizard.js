@@ -16,10 +16,11 @@
     return wizardElement;
   };
 
-  window.populateDom = function (array) {
+  window.populateDom = function (wizards) {
+    similarListElement.innerHTML = '';
     var fragment = document.createDocumentFragment();
     for (var y = 0; y < NUMBER_OF_WIZARDS; y++) {
-      fragment.appendChild(renderWizard(array[y]));
+      fragment.appendChild(renderWizard(wizards[y]));
     }
     similarListElement.appendChild(fragment);
   };

@@ -35,21 +35,15 @@
     return xhr;
   };
 
-  var makeJsonp = function (url, onLoad, onError) {
-    var CALLBACK_NAME = 'window.populateDom';
-    var loader = document.createElement('script');
-    loader.src = url + '?callback=' + CALLBACK_NAME;
-
-    loader.addEventListener('error', function () {
-      onError('Произошла ошибка при загрузке данных');
-    });
-    document.body.append(loader);
-  };
-
   var load = function (onLoad, onError) {
-    // var xhr = makeXhr('GET', URL.LOAD, onLoad, onError);
-    // xhr.send();
-    makeJsonp(URL.LOAD, onLoad, onError);
+
+    var successHandler = function (data) {
+      window.vars.wizards = data;
+      onLoad();
+    };
+
+    var xhr = makeXhr('GET', URL.LOAD, successHandler, onError);
+    xhr.send();
   };
 
   var save = function (data, onLoad, onError) {

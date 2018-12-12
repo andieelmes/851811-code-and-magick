@@ -14,18 +14,19 @@
   var setupWizardFireballElement = window.vars.setupElement.querySelector('.setup-fireball');
   var setupWizardFireballInput = window.vars.setupElement.querySelector('[name="fireball-color"]');
 
-  var addChangeColorEvent = function (element, input, array, colorStyle) {
+  var addChangeColorEvent = function (element, input, array, colorStyle, callback) {
     element.addEventListener('click', function () {
       var color = window.utils.getRandomElement(array);
       input.value = color;
       element.style[colorStyle] = color;
+      callback(color);
     });
   };
 
   window.subscribeColorChanges = function () {
-    addChangeColorEvent(setupWizardCoatElement, setupWizardCoatInput, window.vars.COAT_COLORS, 'fill');
-    addChangeColorEvent(setupWizardEyesElement, setupWizardEyesInput, window.vars.EYE_COLORS, 'fill');
-    addChangeColorEvent(setupWizardFireballElement, setupWizardFireballInput, FIREBALL_COLORS, 'background-color');
+    addChangeColorEvent(setupWizardCoatElement, setupWizardCoatInput, window.vars.COAT_COLORS, 'fill', window.similar.onCoatChange);
+    addChangeColorEvent(setupWizardEyesElement, setupWizardEyesInput, window.vars.EYE_COLORS, 'fill', window.similar.onEyesChange);
+    addChangeColorEvent(setupWizardFireballElement, setupWizardFireballInput, FIREBALL_COLORS, 'background-color', window.similar.onFireballChange);
   };
 
 })();
