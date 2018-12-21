@@ -12,7 +12,7 @@
 
   var onPopupEscPress = function (e) {
     if (e.keyCode === ESC_KEYCODE) {
-      closePopup();
+      window.setup.closePopup();
     }
   };
 
@@ -41,12 +41,12 @@
   });
 
   setupCloseElement.addEventListener('click', function () {
-    closePopup();
+    window.setup.closePopup();
   });
 
   setupCloseElement.addEventListener('keydown', function (e) {
     if (e.keyCode === ENTER_KEYCODE) {
-      closePopup();
+      window.setup.closePopup();
     }
   });
 
@@ -67,6 +67,7 @@
   };
 
   window.setup = {
+    closePopup: closePopup,
     showSetup: showSetup,
     hideSetup: hideSetup,
   };

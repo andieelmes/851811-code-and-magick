@@ -4,7 +4,7 @@
   var formElement = document.querySelector('.setup-wizard-form');
 
   var onLoad = function () {
-    window.setup.hideSetup();
+    window.setup.closePopup();
   };
 
   var onSubmitForm = function (e) {
